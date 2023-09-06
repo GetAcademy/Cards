@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            border: 1px solid black;
+            border-radius: 5px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body onload="initDeck(); shuffle();">
+    <div id="app"></div>
+    <script>
+        // model
+        const suitNames = ['CLUB', 'HEART', 'SPADE', 'DIAMOND'];
+        let deck = [];
+
+        // view
+        function updateView() {
+            let html = '';
+            for (let i = 0; i < deck.length; i++) {
+                const cardIndex = deck[i];
+                html += getCardHtml(cardIndex);
+            }
+            document.getElementById('app').innerHTML += html;
+        }
+
+        function getCardHtml(index) {
+            return `<img src="/img/${getCardName(index)}.png"/>`;
+        }
+
+        function getCardName(index) {
+            return getSuit(index) + '-' + getValue(index);
+        }
+
+        // controller
+        function initDeck() {
+            for (let i = 0; i < 52; i++) {
+                deck.push(i);
+            }
+            updateView();
+        }
+
+        function shuffle() {
+
+        }
+
+        // felles-funksjoner
+
+        function getValue(index) {
+            return 1 + (index % 13);
+        }
+
+        function getSuit(index) {
+            let suitIndex = Math.floor(index / 13);
+            // let suit = '';
+            // if (suitIndex == 0) suit = 'CLUB';
+            // else if (suitIndex == 1) suit = 'HEART';
+            // else if (suitIndex == 2) suit = 'SPADE';
+            // else if (suitIndex == 3) suit = 'DIAMOND';
+            let suit = suitNames[suitIndex];
+            return suit;
+        }
+
+    </script>
+</body>
+
+</html>
