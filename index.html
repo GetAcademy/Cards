@@ -14,7 +14,7 @@
     </style>
 </head>
 
-<body onload="initDeck(); shuffle();">
+<body onload="initDeck();">
     <div id="app"></div>
     <script>
         // model
@@ -44,11 +44,27 @@
             for (let i = 0; i < 52; i++) {
                 deck.push(i);
             }
+            shuffle();
             updateView();
         }
 
         function shuffle() {
+            for (let deckIndex = 0; deckIndex < deck.length; deckIndex++) {
+                let randomIndex = Math.floor(Math.random() * 52);
+                const tmpCardIndex = deck[randomIndex];
+                deck[randomIndex] = deck[deckIndex];
+                deck[deckIndex] = tmpCardIndex;
+            }
+        }
 
+        function shuffle2() {
+            for (let shuffleIndex = 0; shuffleIndex < 100; shuffleIndex++) {
+                let randomIndex1 = Math.floor(Math.random() * 52);
+                let randomIndex2 = Math.floor(Math.random() * 52);
+                const tmpCardIndex = deck[randomIndex1];
+                deck[randomIndex1] = deck[randomIndex2];
+                deck[randomIndex2] = tmpCardIndex;
+            }
         }
 
         // felles-funksjoner
